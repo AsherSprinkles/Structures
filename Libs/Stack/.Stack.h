@@ -7,6 +7,4 @@ typedef struct _node {
     struct _node *next;
 } NODE;
 
-NODE *make_node(int value);
-
 #endif // _STACK

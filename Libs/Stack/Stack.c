@@ -3,7 +3,7 @@
 #include "Stack.h"
 #include ".Stack.h"
 
-NODE *make_node(int value)
+static NODE *make_node(int value)
 {
     NODE *node = malloc(sizeof(NODE));
     node->value = value;
@@ -11,12 +11,13 @@ NODE *make_node(int value)
     return node;
 }
 
-Stack make_stack()
+STACK *make_stack()
 {
-    return NULL;
+    STACK *stack = malloc(sizeof(STACK));
+    return stack;
 }
 
-void push(int value, Stack *stack)
+void push(int value, STACK *stack)
 {
     NODE *node = make_node(value);
     NODE *head = *stack;
@@ -25,7 +26,7 @@ void push(int value, Stack *stack)
     *stack = head;
 }
 
-int pop(Stack *stack)
+int pop(STACK *stack)
 {
     NODE *head = *stack;
     if (head == NULL)
@@ -39,8 +40,9 @@ int pop(Stack *stack)
     return value;
 }
 
-void delete_stack(Stack head)
+void delete_stack(STACK *stack)
 {
+    NODE *head = *stack;
     NODE *node = head;
     while (head != NULL)
     {
@@ -50,18 +52,22 @@ void delete_stack(Stack head)
     }
 }
 
-void print(Stack stack)
+void print(STACK *stack)
 {
-    NODE *node = stack;
+    NODE *head = *stack;
+    NODE *node = head;
     NODE *prev = NULL;
     printf("[ ");
-    if (stack == NULL) {
+    // Empty stack
+    if (head == NULL) {
         printf("\n");
         return;
     }
-    while (prev != stack)
+    // Reverse traversal for printing
+    while (prev != head)
     {
-        node = stack;
+        node = head;
+        // Find lowest unprinted node
         while (node->next != prev)
         {
             node = node->next;
@@ -72,9 +78,9 @@ void print(Stack stack)
     printf("\n");
 }
 
-int is_empty(Stack stack)
+int is_empty(STACK *stack)
 {
-    if (stack == NULL)
+    if (*stack == NULL)
         return 1;
     return 0;
 }
