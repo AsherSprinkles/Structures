@@ -1,8 +1,5 @@
 CFLAGS=-O3 -Wall -Wextra
-STACKPATH=./Libs/Stack
-TREEPATH=./Libs/Tree
-VPATH=$(STACKPATH) $(TREEPATH)
-OBJS=$(STACKPATH)/Stack.o $(TREEPATH)/Tree.o
+LIBDIR=/lib
 
 main: $(OBJS) main.c
 
