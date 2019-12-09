@@ -1,14 +1,14 @@
-#if !defined(STACK_H)
+#ifndef STACK_H
 #define STACK_H
 
-struct _node;
-typedef struct _node* STACK;
+struct _stacknode;
+typedef struct _stacknode* STACK;
 
 STACK *make_stack();
 void push(int, STACK *);
 int pop(STACK *);
 void delete_stack(STACK *);
-void print(STACK *);
+void print_stack(STACK *);
 int is_empty(STACK *);
 
 #endif // STACK_H

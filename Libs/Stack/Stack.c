@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits.h>
 #include "Stack.h"
 #include ".Stack.h"
 
@@ -14,6 +15,7 @@ static NODE *make_node(int value)
 STACK *make_stack()
 {
     STACK *stack = malloc(sizeof(STACK));
+    *stack = NULL;
     return stack;
 }
 
@@ -28,9 +30,12 @@ void push(int value, STACK *stack)
 
 int pop(STACK *stack)
 {
+    if (*stack == NULL) 
+    {
+        // Stack is empty
+        return INT_MIN;
+    }
     NODE *head = *stack;
-    if (head == NULL)
-        return -1;
     int value = head->value;
     NODE *node;
     node = head;
@@ -42,6 +47,11 @@ int pop(STACK *stack)
 
 void delete_stack(STACK *stack)
 {
+    if (*stack == NULL)
+    {
+        free(stack);
+        return;
+    }
     NODE *head = *stack;
     NODE *node = head;
     while (head != NULL)
@@ -50,19 +60,20 @@ void delete_stack(STACK *stack)
         free(node);
         node = head;
     }
+    free(stack);
 }
 
-void print(STACK *stack)
+void print_stack(STACK *stack)
 {
+    if (*stack == NULL)
+    {
+        printf("[ \n");
+        return;
+    }
     NODE *head = *stack;
     NODE *node = head;
     NODE *prev = NULL;
     printf("[ ");
-    // Empty stack
-    if (head == NULL) {
-        printf("\n");
-        return;
-    }
     // Reverse traversal for printing
     while (prev != head)
     {

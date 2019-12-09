@@ -2,11 +2,9 @@ CFLAGS=-O3 -Wall -Wextra
 STACKPATH=./Libs/Stack
 TREEPATH=./Libs/Tree
 VPATH=$(STACKPATH) $(TREEPATH)
-OBJS=main.o $(STACKPATH)/Stack.o $(TREEPATH)/Tree.o
+OBJS=$(STACKPATH)/Stack.o $(TREEPATH)/Tree.o
 
-main: $(OBJS)
-
-main.o: main.c
+main: $(OBJS) main.c
 
 $(STACKPATH)/Stack.o: Stack.c
 

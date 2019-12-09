@@ -1,10 +1,10 @@
-#if !defined(_STACK)
+#ifndef _STACK
 #define _STACK
 
 // Private header file for Stack
-typedef struct _node {
+typedef struct _stacknode {
     int value;
-    struct _node *next;
+    struct _stacknode *next;
 } NODE;
 
 #endif // _STACK

@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "../Stack/Stack.h"
 #include "Tree.h"
+#include ".Tree.h"
 
 static NODE *make_node(int key, int value, int n)
 {
@@ -18,7 +19,7 @@ static NODE *make_node(int key, int value, int n)
     return newNode;
 }
 
-void delete_node(NODE *node, int n)
+static void delete_node(NODE *node, int n)
 {
     // recursively delete children
     for (int i = 0; i < n; i++)
@@ -47,5 +48,5 @@ void delete_tree(TREE *tree)
 
 NODE *find_node(int key, TREE *tree)
 {
-    // implement stack for search
+
 }
